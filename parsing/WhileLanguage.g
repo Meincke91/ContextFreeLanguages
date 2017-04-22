@@ -22,13 +22,15 @@ program returns [Statement value]
 
 statement returns [Statement value]
     : s=base_statement       { $value = s; }
-      ( ';' s=base_statement { $value = new SeqStatement($value,s); } )*
+      ( ';' s=base_statement { $value = new SeqStatement($value,s); } )* 
     ;
 
 base_statement returns [Statement value]
     : ID ':=' e=arith_expr                      { $value = new AssignStatement($ID.getText(), e); }
     | 'if' c=bool_expr 'then' s1=base_statement
       'else' s2=base_statement                  { $value = new IfStatement(c,s1,s2); }
+    | 'while' c=bool_expr   
+      s=base_statement                          { $value = new WhileStatement(c,s); }
     | '{' s=statement '}'                       { $value = s; }
     ;
 

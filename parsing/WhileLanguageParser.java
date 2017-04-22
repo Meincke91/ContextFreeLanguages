@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 WhileLanguage.g 2017-04-22 13:32:50
+// $ANTLR 3.5.2 while_language/parsing/WhileLanguage.g 2017-04-22 17:58:57
 
 package while_language.parsing;
 
@@ -16,7 +16,7 @@ public class WhileLanguageParser extends Parser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ID", "NUM", "WS", "'!'", "'!='", 
 		"'&&'", "'*'", "'+'", "'-'", "':='", "';'", "'<='", "'='", "'else'", "'false'", 
-		"'if'", "'then'", "'true'", "'{'", "'}'"
+		"'if'", "'then'", "'true'", "'while'", "'{'", "'}'"
 	};
 	public static final int EOF=-1;
 	public static final int T__7=7;
@@ -36,6 +36,7 @@ public class WhileLanguageParser extends Parser {
 	public static final int T__21=21;
 	public static final int T__22=22;
 	public static final int T__23=23;
+	public static final int T__24=24;
 	public static final int ID=4;
 	public static final int NUM=5;
 	public static final int WS=6;
@@ -56,12 +57,12 @@ public class WhileLanguageParser extends Parser {
 	}
 
 	@Override public String[] getTokenNames() { return WhileLanguageParser.tokenNames; }
-	@Override public String getGrammarFileName() { return "WhileLanguage.g"; }
+	@Override public String getGrammarFileName() { return "while_language/parsing/WhileLanguage.g"; }
 
 
 
 	// $ANTLR start "program"
-	// WhileLanguage.g:19:1: program returns [Statement value] : s= statement EOF ;
+	// while_language/parsing/WhileLanguage.g:19:1: program returns [Statement value] : s= statement EOF ;
 	public final Statement program() throws RecognitionException {
 		Statement value = null;
 
@@ -69,8 +70,8 @@ public class WhileLanguageParser extends Parser {
 		Statement s =null;
 
 		try {
-			// WhileLanguage.g:20:5: (s= statement EOF )
-			// WhileLanguage.g:20:7: s= statement EOF
+			// while_language/parsing/WhileLanguage.g:20:5: (s= statement EOF )
+			// while_language/parsing/WhileLanguage.g:20:7: s= statement EOF
 			{
 			pushFollow(FOLLOW_statement_in_program49);
 			s=statement();
@@ -95,7 +96,7 @@ public class WhileLanguageParser extends Parser {
 
 
 	// $ANTLR start "statement"
-	// WhileLanguage.g:23:1: statement returns [Statement value] : s= base_statement ( ';' s= base_statement )* ;
+	// while_language/parsing/WhileLanguage.g:23:1: statement returns [Statement value] : s= base_statement ( ';' s= base_statement )* ;
 	public final Statement statement() throws RecognitionException {
 		Statement value = null;
 
@@ -103,15 +104,15 @@ public class WhileLanguageParser extends Parser {
 		Statement s =null;
 
 		try {
-			// WhileLanguage.g:24:5: (s= base_statement ( ';' s= base_statement )* )
-			// WhileLanguage.g:24:7: s= base_statement ( ';' s= base_statement )*
+			// while_language/parsing/WhileLanguage.g:24:5: (s= base_statement ( ';' s= base_statement )* )
+			// while_language/parsing/WhileLanguage.g:24:7: s= base_statement ( ';' s= base_statement )*
 			{
 			pushFollow(FOLLOW_base_statement_in_statement76);
 			s=base_statement();
 			state._fsp--;
 
 			 value = s; 
-			// WhileLanguage.g:25:7: ( ';' s= base_statement )*
+			// while_language/parsing/WhileLanguage.g:25:7: ( ';' s= base_statement )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -122,7 +123,7 @@ public class WhileLanguageParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// WhileLanguage.g:25:9: ';' s= base_statement
+					// while_language/parsing/WhileLanguage.g:25:9: ';' s= base_statement
 					{
 					match(input,14,FOLLOW_14_in_statement94); 
 					pushFollow(FOLLOW_base_statement_in_statement98);
@@ -155,7 +156,7 @@ public class WhileLanguageParser extends Parser {
 
 
 	// $ANTLR start "base_statement"
-	// WhileLanguage.g:28:1: base_statement returns [Statement value] : ( ID ':=' e= arith_expr | 'if' c= bool_expr 'then' s1= base_statement 'else' s2= base_statement | '{' s= statement '}' );
+	// while_language/parsing/WhileLanguage.g:28:1: base_statement returns [Statement value] : ( ID ':=' e= arith_expr | 'if' c= bool_expr 'then' s1= base_statement 'else' s2= base_statement | 'while' c= bool_expr s= base_statement | '{' s= statement '}' );
 	public final Statement base_statement() throws RecognitionException {
 		Statement value = null;
 
@@ -168,8 +169,8 @@ public class WhileLanguageParser extends Parser {
 		Statement s =null;
 
 		try {
-			// WhileLanguage.g:29:5: ( ID ':=' e= arith_expr | 'if' c= bool_expr 'then' s1= base_statement 'else' s2= base_statement | '{' s= statement '}' )
-			int alt2=3;
+			// while_language/parsing/WhileLanguage.g:29:5: ( ID ':=' e= arith_expr | 'if' c= bool_expr 'then' s1= base_statement 'else' s2= base_statement | 'while' c= bool_expr s= base_statement | '{' s= statement '}' )
+			int alt2=4;
 			switch ( input.LA(1) ) {
 			case ID:
 				{
@@ -186,6 +187,11 @@ public class WhileLanguageParser extends Parser {
 				alt2=3;
 				}
 				break;
+			case 23:
+				{
+				alt2=4;
+				}
+				break;
 			default:
 				NoViableAltException nvae =
 					new NoViableAltException("", 2, 0, input);
@@ -193,11 +199,11 @@ public class WhileLanguageParser extends Parser {
 			}
 			switch (alt2) {
 				case 1 :
-					// WhileLanguage.g:29:7: ID ':=' e= arith_expr
+					// while_language/parsing/WhileLanguage.g:29:7: ID ':=' e= arith_expr
 					{
-					ID1=(Token)match(input,ID,FOLLOW_ID_in_base_statement124); 
-					match(input,13,FOLLOW_13_in_base_statement126); 
-					pushFollow(FOLLOW_arith_expr_in_base_statement130);
+					ID1=(Token)match(input,ID,FOLLOW_ID_in_base_statement125); 
+					match(input,13,FOLLOW_13_in_base_statement127); 
+					pushFollow(FOLLOW_arith_expr_in_base_statement131);
 					e=arith_expr();
 					state._fsp--;
 
@@ -205,20 +211,20 @@ public class WhileLanguageParser extends Parser {
 					}
 					break;
 				case 2 :
-					// WhileLanguage.g:30:7: 'if' c= bool_expr 'then' s1= base_statement 'else' s2= base_statement
+					// while_language/parsing/WhileLanguage.g:30:7: 'if' c= bool_expr 'then' s1= base_statement 'else' s2= base_statement
 					{
-					match(input,19,FOLLOW_19_in_base_statement161); 
-					pushFollow(FOLLOW_bool_expr_in_base_statement165);
+					match(input,19,FOLLOW_19_in_base_statement162); 
+					pushFollow(FOLLOW_bool_expr_in_base_statement166);
 					c=bool_expr();
 					state._fsp--;
 
-					match(input,20,FOLLOW_20_in_base_statement167); 
-					pushFollow(FOLLOW_base_statement_in_base_statement171);
+					match(input,20,FOLLOW_20_in_base_statement168); 
+					pushFollow(FOLLOW_base_statement_in_base_statement172);
 					s1=base_statement();
 					state._fsp--;
 
-					match(input,17,FOLLOW_17_in_base_statement179); 
-					pushFollow(FOLLOW_base_statement_in_base_statement183);
+					match(input,17,FOLLOW_17_in_base_statement180); 
+					pushFollow(FOLLOW_base_statement_in_base_statement184);
 					s2=base_statement();
 					state._fsp--;
 
@@ -226,14 +232,29 @@ public class WhileLanguageParser extends Parser {
 					}
 					break;
 				case 3 :
-					// WhileLanguage.g:32:7: '{' s= statement '}'
+					// while_language/parsing/WhileLanguage.g:32:7: 'while' c= bool_expr s= base_statement
 					{
-					match(input,22,FOLLOW_22_in_base_statement210); 
-					pushFollow(FOLLOW_statement_in_base_statement214);
+					match(input,22,FOLLOW_22_in_base_statement211); 
+					pushFollow(FOLLOW_bool_expr_in_base_statement215);
+					c=bool_expr();
+					state._fsp--;
+
+					pushFollow(FOLLOW_base_statement_in_base_statement228);
+					s=base_statement();
+					state._fsp--;
+
+					 value = new WhileStatement(c,s); 
+					}
+					break;
+				case 4 :
+					// while_language/parsing/WhileLanguage.g:34:7: '{' s= statement '}'
+					{
+					match(input,23,FOLLOW_23_in_base_statement263); 
+					pushFollow(FOLLOW_statement_in_base_statement267);
 					s=statement();
 					state._fsp--;
 
-					match(input,23,FOLLOW_23_in_base_statement216); 
+					match(input,24,FOLLOW_24_in_base_statement269); 
 					 value = s; 
 					}
 					break;
@@ -254,7 +275,7 @@ public class WhileLanguageParser extends Parser {
 
 
 	// $ANTLR start "bool_expr"
-	// WhileLanguage.g:35:1: bool_expr returns [BoolExpr value] : e= literal ( '&&' e= literal )* ;
+	// while_language/parsing/WhileLanguage.g:37:1: bool_expr returns [BoolExpr value] : e= literal ( '&&' e= literal )* ;
 	public final BoolExpr bool_expr() throws RecognitionException {
 		BoolExpr value = null;
 
@@ -262,15 +283,15 @@ public class WhileLanguageParser extends Parser {
 		BoolExpr e =null;
 
 		try {
-			// WhileLanguage.g:36:5: (e= literal ( '&&' e= literal )* )
-			// WhileLanguage.g:36:7: e= literal ( '&&' e= literal )*
+			// while_language/parsing/WhileLanguage.g:38:5: (e= literal ( '&&' e= literal )* )
+			// while_language/parsing/WhileLanguage.g:38:7: e= literal ( '&&' e= literal )*
 			{
-			pushFollow(FOLLOW_literal_in_bool_expr263);
+			pushFollow(FOLLOW_literal_in_bool_expr316);
 			e=literal();
 			state._fsp--;
 
 			 value = e; 
-			// WhileLanguage.g:37:7: ( '&&' e= literal )*
+			// while_language/parsing/WhileLanguage.g:39:7: ( '&&' e= literal )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -281,10 +302,10 @@ public class WhileLanguageParser extends Parser {
 
 				switch (alt3) {
 				case 1 :
-					// WhileLanguage.g:37:9: '&&' e= literal
+					// while_language/parsing/WhileLanguage.g:39:9: '&&' e= literal
 					{
-					match(input,9,FOLLOW_9_in_bool_expr281); 
-					pushFollow(FOLLOW_literal_in_bool_expr285);
+					match(input,9,FOLLOW_9_in_bool_expr334); 
+					pushFollow(FOLLOW_literal_in_bool_expr338);
 					e=literal();
 					state._fsp--;
 
@@ -314,7 +335,7 @@ public class WhileLanguageParser extends Parser {
 
 
 	// $ANTLR start "literal"
-	// WhileLanguage.g:40:1: literal returns [BoolExpr value] : (e= base_bool_expr | '!' e= literal );
+	// while_language/parsing/WhileLanguage.g:42:1: literal returns [BoolExpr value] : (e= base_bool_expr | '!' e= literal );
 	public final BoolExpr literal() throws RecognitionException {
 		BoolExpr value = null;
 
@@ -322,7 +343,7 @@ public class WhileLanguageParser extends Parser {
 		BoolExpr e =null;
 
 		try {
-			// WhileLanguage.g:41:5: (e= base_bool_expr | '!' e= literal )
+			// while_language/parsing/WhileLanguage.g:43:5: (e= base_bool_expr | '!' e= literal )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( ((LA4_0 >= ID && LA4_0 <= NUM)||LA4_0==18||LA4_0==21) ) {
@@ -340,9 +361,9 @@ public class WhileLanguageParser extends Parser {
 
 			switch (alt4) {
 				case 1 :
-					// WhileLanguage.g:41:7: e= base_bool_expr
+					// while_language/parsing/WhileLanguage.g:43:7: e= base_bool_expr
 					{
-					pushFollow(FOLLOW_base_bool_expr_in_literal313);
+					pushFollow(FOLLOW_base_bool_expr_in_literal366);
 					e=base_bool_expr();
 					state._fsp--;
 
@@ -350,10 +371,10 @@ public class WhileLanguageParser extends Parser {
 					}
 					break;
 				case 2 :
-					// WhileLanguage.g:42:7: '!' e= literal
+					// while_language/parsing/WhileLanguage.g:44:7: '!' e= literal
 					{
-					match(input,7,FOLLOW_7_in_literal326); 
-					pushFollow(FOLLOW_literal_in_literal330);
+					match(input,7,FOLLOW_7_in_literal379); 
+					pushFollow(FOLLOW_literal_in_literal383);
 					e=literal();
 					state._fsp--;
 
@@ -377,7 +398,7 @@ public class WhileLanguageParser extends Parser {
 
 
 	// $ANTLR start "base_bool_expr"
-	// WhileLanguage.g:45:1: base_bool_expr returns [BoolExpr value] : ( 'true' | 'false' |e1= arith_expr '=' e2= arith_expr |e1= arith_expr '<=' e2= arith_expr |e1= arith_expr '!=' e2= arith_expr );
+	// while_language/parsing/WhileLanguage.g:47:1: base_bool_expr returns [BoolExpr value] : ( 'true' | 'false' |e1= arith_expr '=' e2= arith_expr |e1= arith_expr '<=' e2= arith_expr |e1= arith_expr '!=' e2= arith_expr );
 	public final BoolExpr base_bool_expr() throws RecognitionException {
 		BoolExpr value = null;
 
@@ -386,33 +407,33 @@ public class WhileLanguageParser extends Parser {
 		ArithExpr e2 =null;
 
 		try {
-			// WhileLanguage.g:46:5: ( 'true' | 'false' |e1= arith_expr '=' e2= arith_expr |e1= arith_expr '<=' e2= arith_expr |e1= arith_expr '!=' e2= arith_expr )
+			// while_language/parsing/WhileLanguage.g:48:5: ( 'true' | 'false' |e1= arith_expr '=' e2= arith_expr |e1= arith_expr '<=' e2= arith_expr |e1= arith_expr '!=' e2= arith_expr )
 			int alt5=5;
 			alt5 = dfa5.predict(input);
 			switch (alt5) {
 				case 1 :
-					// WhileLanguage.g:46:7: 'true'
+					// while_language/parsing/WhileLanguage.g:48:7: 'true'
 					{
-					match(input,21,FOLLOW_21_in_base_bool_expr353); 
+					match(input,21,FOLLOW_21_in_base_bool_expr406); 
 					 value = new BoolValueExpr(true); 
 					}
 					break;
 				case 2 :
-					// WhileLanguage.g:47:7: 'false'
+					// while_language/parsing/WhileLanguage.g:49:7: 'false'
 					{
-					match(input,18,FOLLOW_18_in_base_bool_expr391); 
+					match(input,18,FOLLOW_18_in_base_bool_expr444); 
 					 value = new BoolValueExpr(false); 
 					}
 					break;
 				case 3 :
-					// WhileLanguage.g:48:7: e1= arith_expr '=' e2= arith_expr
+					// while_language/parsing/WhileLanguage.g:50:7: e1= arith_expr '=' e2= arith_expr
 					{
-					pushFollow(FOLLOW_arith_expr_in_base_bool_expr430);
+					pushFollow(FOLLOW_arith_expr_in_base_bool_expr483);
 					e1=arith_expr();
 					state._fsp--;
 
-					match(input,16,FOLLOW_16_in_base_bool_expr432); 
-					pushFollow(FOLLOW_arith_expr_in_base_bool_expr436);
+					match(input,16,FOLLOW_16_in_base_bool_expr485); 
+					pushFollow(FOLLOW_arith_expr_in_base_bool_expr489);
 					e2=arith_expr();
 					state._fsp--;
 
@@ -420,14 +441,14 @@ public class WhileLanguageParser extends Parser {
 					}
 					break;
 				case 4 :
-					// WhileLanguage.g:49:7: e1= arith_expr '<=' e2= arith_expr
+					// while_language/parsing/WhileLanguage.g:51:7: e1= arith_expr '<=' e2= arith_expr
 					{
-					pushFollow(FOLLOW_arith_expr_in_base_bool_expr451);
+					pushFollow(FOLLOW_arith_expr_in_base_bool_expr504);
 					e1=arith_expr();
 					state._fsp--;
 
-					match(input,15,FOLLOW_15_in_base_bool_expr453); 
-					pushFollow(FOLLOW_arith_expr_in_base_bool_expr457);
+					match(input,15,FOLLOW_15_in_base_bool_expr506); 
+					pushFollow(FOLLOW_arith_expr_in_base_bool_expr510);
 					e2=arith_expr();
 					state._fsp--;
 
@@ -435,14 +456,14 @@ public class WhileLanguageParser extends Parser {
 					}
 					break;
 				case 5 :
-					// WhileLanguage.g:50:7: e1= arith_expr '!=' e2= arith_expr
+					// while_language/parsing/WhileLanguage.g:52:7: e1= arith_expr '!=' e2= arith_expr
 					{
-					pushFollow(FOLLOW_arith_expr_in_base_bool_expr471);
+					pushFollow(FOLLOW_arith_expr_in_base_bool_expr524);
 					e1=arith_expr();
 					state._fsp--;
 
-					match(input,8,FOLLOW_8_in_base_bool_expr473); 
-					pushFollow(FOLLOW_arith_expr_in_base_bool_expr477);
+					match(input,8,FOLLOW_8_in_base_bool_expr526); 
+					pushFollow(FOLLOW_arith_expr_in_base_bool_expr530);
 					e2=arith_expr();
 					state._fsp--;
 
@@ -466,7 +487,7 @@ public class WhileLanguageParser extends Parser {
 
 
 	// $ANTLR start "arith_expr"
-	// WhileLanguage.g:53:1: arith_expr returns [ArithExpr value] : e= mult_arith_expr ( '+' e= mult_arith_expr | '-' e= mult_arith_expr )* ;
+	// while_language/parsing/WhileLanguage.g:55:1: arith_expr returns [ArithExpr value] : e= mult_arith_expr ( '+' e= mult_arith_expr | '-' e= mult_arith_expr )* ;
 	public final ArithExpr arith_expr() throws RecognitionException {
 		ArithExpr value = null;
 
@@ -474,15 +495,15 @@ public class WhileLanguageParser extends Parser {
 		ArithExpr e =null;
 
 		try {
-			// WhileLanguage.g:54:5: (e= mult_arith_expr ( '+' e= mult_arith_expr | '-' e= mult_arith_expr )* )
-			// WhileLanguage.g:54:7: e= mult_arith_expr ( '+' e= mult_arith_expr | '-' e= mult_arith_expr )*
+			// while_language/parsing/WhileLanguage.g:56:5: (e= mult_arith_expr ( '+' e= mult_arith_expr | '-' e= mult_arith_expr )* )
+			// while_language/parsing/WhileLanguage.g:56:7: e= mult_arith_expr ( '+' e= mult_arith_expr | '-' e= mult_arith_expr )*
 			{
-			pushFollow(FOLLOW_mult_arith_expr_in_arith_expr504);
+			pushFollow(FOLLOW_mult_arith_expr_in_arith_expr557);
 			e=mult_arith_expr();
 			state._fsp--;
 
 			 value = e; 
-			// WhileLanguage.g:55:7: ( '+' e= mult_arith_expr | '-' e= mult_arith_expr )*
+			// while_language/parsing/WhileLanguage.g:57:7: ( '+' e= mult_arith_expr | '-' e= mult_arith_expr )*
 			loop6:
 			while (true) {
 				int alt6=3;
@@ -496,10 +517,10 @@ public class WhileLanguageParser extends Parser {
 
 				switch (alt6) {
 				case 1 :
-					// WhileLanguage.g:55:9: '+' e= mult_arith_expr
+					// while_language/parsing/WhileLanguage.g:57:9: '+' e= mult_arith_expr
 					{
-					match(input,11,FOLLOW_11_in_arith_expr522); 
-					pushFollow(FOLLOW_mult_arith_expr_in_arith_expr526);
+					match(input,11,FOLLOW_11_in_arith_expr575); 
+					pushFollow(FOLLOW_mult_arith_expr_in_arith_expr579);
 					e=mult_arith_expr();
 					state._fsp--;
 
@@ -507,10 +528,10 @@ public class WhileLanguageParser extends Parser {
 					}
 					break;
 				case 2 :
-					// WhileLanguage.g:56:9: '-' e= mult_arith_expr
+					// while_language/parsing/WhileLanguage.g:58:9: '-' e= mult_arith_expr
 					{
-					match(input,12,FOLLOW_12_in_arith_expr539); 
-					pushFollow(FOLLOW_mult_arith_expr_in_arith_expr543);
+					match(input,12,FOLLOW_12_in_arith_expr592); 
+					pushFollow(FOLLOW_mult_arith_expr_in_arith_expr596);
 					e=mult_arith_expr();
 					state._fsp--;
 
@@ -540,7 +561,7 @@ public class WhileLanguageParser extends Parser {
 
 
 	// $ANTLR start "mult_arith_expr"
-	// WhileLanguage.g:59:1: mult_arith_expr returns [ArithExpr value] : e= base_arith_expr ( '*' e= base_arith_expr )* ;
+	// while_language/parsing/WhileLanguage.g:61:1: mult_arith_expr returns [ArithExpr value] : e= base_arith_expr ( '*' e= base_arith_expr )* ;
 	public final ArithExpr mult_arith_expr() throws RecognitionException {
 		ArithExpr value = null;
 
@@ -548,15 +569,15 @@ public class WhileLanguageParser extends Parser {
 		ArithExpr e =null;
 
 		try {
-			// WhileLanguage.g:60:5: (e= base_arith_expr ( '*' e= base_arith_expr )* )
-			// WhileLanguage.g:60:7: e= base_arith_expr ( '*' e= base_arith_expr )*
+			// while_language/parsing/WhileLanguage.g:62:5: (e= base_arith_expr ( '*' e= base_arith_expr )* )
+			// while_language/parsing/WhileLanguage.g:62:7: e= base_arith_expr ( '*' e= base_arith_expr )*
 			{
-			pushFollow(FOLLOW_base_arith_expr_in_mult_arith_expr571);
+			pushFollow(FOLLOW_base_arith_expr_in_mult_arith_expr624);
 			e=base_arith_expr();
 			state._fsp--;
 
 			 value = e; 
-			// WhileLanguage.g:61:7: ( '*' e= base_arith_expr )*
+			// while_language/parsing/WhileLanguage.g:63:7: ( '*' e= base_arith_expr )*
 			loop7:
 			while (true) {
 				int alt7=2;
@@ -567,10 +588,10 @@ public class WhileLanguageParser extends Parser {
 
 				switch (alt7) {
 				case 1 :
-					// WhileLanguage.g:61:9: '*' e= base_arith_expr
+					// while_language/parsing/WhileLanguage.g:63:9: '*' e= base_arith_expr
 					{
-					match(input,10,FOLLOW_10_in_mult_arith_expr589); 
-					pushFollow(FOLLOW_base_arith_expr_in_mult_arith_expr593);
+					match(input,10,FOLLOW_10_in_mult_arith_expr642); 
+					pushFollow(FOLLOW_base_arith_expr_in_mult_arith_expr646);
 					e=base_arith_expr();
 					state._fsp--;
 
@@ -600,7 +621,7 @@ public class WhileLanguageParser extends Parser {
 
 
 	// $ANTLR start "base_arith_expr"
-	// WhileLanguage.g:64:1: base_arith_expr returns [ArithExpr value] : ( NUM | ID );
+	// while_language/parsing/WhileLanguage.g:66:1: base_arith_expr returns [ArithExpr value] : ( NUM | ID );
 	public final ArithExpr base_arith_expr() throws RecognitionException {
 		ArithExpr value = null;
 
@@ -609,7 +630,7 @@ public class WhileLanguageParser extends Parser {
 		Token ID3=null;
 
 		try {
-			// WhileLanguage.g:65:5: ( NUM | ID )
+			// while_language/parsing/WhileLanguage.g:67:5: ( NUM | ID )
 			int alt8=2;
 			int LA8_0 = input.LA(1);
 			if ( (LA8_0==NUM) ) {
@@ -627,16 +648,16 @@ public class WhileLanguageParser extends Parser {
 
 			switch (alt8) {
 				case 1 :
-					// WhileLanguage.g:65:7: NUM
+					// while_language/parsing/WhileLanguage.g:67:7: NUM
 					{
-					NUM2=(Token)match(input,NUM,FOLLOW_NUM_in_base_arith_expr619); 
+					NUM2=(Token)match(input,NUM,FOLLOW_NUM_in_base_arith_expr672); 
 					 value = new NumExpr(Integer.parseInt(NUM2.getText())); 
 					}
 					break;
 				case 2 :
-					// WhileLanguage.g:66:7: ID
+					// while_language/parsing/WhileLanguage.g:68:7: ID
 					{
-					ID3=(Token)match(input,ID,FOLLOW_ID_in_base_arith_expr629); 
+					ID3=(Token)match(input,ID,FOLLOW_ID_in_base_arith_expr682); 
 					 value = new IdExpr(ID3.getText()); 
 					}
 					break;
@@ -727,52 +748,55 @@ public class WhileLanguageParser extends Parser {
 		}
 		@Override
 		public String getDescription() {
-			return "45:1: base_bool_expr returns [BoolExpr value] : ( 'true' | 'false' |e1= arith_expr '=' e2= arith_expr |e1= arith_expr '<=' e2= arith_expr |e1= arith_expr '!=' e2= arith_expr );";
+			return "47:1: base_bool_expr returns [BoolExpr value] : ( 'true' | 'false' |e1= arith_expr '=' e2= arith_expr |e1= arith_expr '<=' e2= arith_expr |e1= arith_expr '!=' e2= arith_expr );";
 		}
 	}
 
 	public static final BitSet FOLLOW_statement_in_program49 = new BitSet(new long[]{0x0000000000000000L});
 	public static final BitSet FOLLOW_EOF_in_program51 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_base_statement_in_statement76 = new BitSet(new long[]{0x0000000000004002L});
-	public static final BitSet FOLLOW_14_in_statement94 = new BitSet(new long[]{0x0000000000480010L});
+	public static final BitSet FOLLOW_14_in_statement94 = new BitSet(new long[]{0x0000000000C80010L});
 	public static final BitSet FOLLOW_base_statement_in_statement98 = new BitSet(new long[]{0x0000000000004002L});
-	public static final BitSet FOLLOW_ID_in_base_statement124 = new BitSet(new long[]{0x0000000000002000L});
-	public static final BitSet FOLLOW_13_in_base_statement126 = new BitSet(new long[]{0x0000000000000030L});
-	public static final BitSet FOLLOW_arith_expr_in_base_statement130 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_19_in_base_statement161 = new BitSet(new long[]{0x00000000002400B0L});
-	public static final BitSet FOLLOW_bool_expr_in_base_statement165 = new BitSet(new long[]{0x0000000000100000L});
-	public static final BitSet FOLLOW_20_in_base_statement167 = new BitSet(new long[]{0x0000000000480010L});
-	public static final BitSet FOLLOW_base_statement_in_base_statement171 = new BitSet(new long[]{0x0000000000020000L});
-	public static final BitSet FOLLOW_17_in_base_statement179 = new BitSet(new long[]{0x0000000000480010L});
-	public static final BitSet FOLLOW_base_statement_in_base_statement183 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_22_in_base_statement210 = new BitSet(new long[]{0x0000000000480010L});
-	public static final BitSet FOLLOW_statement_in_base_statement214 = new BitSet(new long[]{0x0000000000800000L});
-	public static final BitSet FOLLOW_23_in_base_statement216 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_literal_in_bool_expr263 = new BitSet(new long[]{0x0000000000000202L});
-	public static final BitSet FOLLOW_9_in_bool_expr281 = new BitSet(new long[]{0x00000000002400B0L});
-	public static final BitSet FOLLOW_literal_in_bool_expr285 = new BitSet(new long[]{0x0000000000000202L});
-	public static final BitSet FOLLOW_base_bool_expr_in_literal313 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_7_in_literal326 = new BitSet(new long[]{0x00000000002400B0L});
-	public static final BitSet FOLLOW_literal_in_literal330 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_21_in_base_bool_expr353 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_18_in_base_bool_expr391 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr430 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_16_in_base_bool_expr432 = new BitSet(new long[]{0x0000000000000030L});
-	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr436 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr451 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_15_in_base_bool_expr453 = new BitSet(new long[]{0x0000000000000030L});
-	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr457 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr471 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_8_in_base_bool_expr473 = new BitSet(new long[]{0x0000000000000030L});
-	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr477 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_mult_arith_expr_in_arith_expr504 = new BitSet(new long[]{0x0000000000001802L});
-	public static final BitSet FOLLOW_11_in_arith_expr522 = new BitSet(new long[]{0x0000000000000030L});
-	public static final BitSet FOLLOW_mult_arith_expr_in_arith_expr526 = new BitSet(new long[]{0x0000000000001802L});
-	public static final BitSet FOLLOW_12_in_arith_expr539 = new BitSet(new long[]{0x0000000000000030L});
-	public static final BitSet FOLLOW_mult_arith_expr_in_arith_expr543 = new BitSet(new long[]{0x0000000000001802L});
-	public static final BitSet FOLLOW_base_arith_expr_in_mult_arith_expr571 = new BitSet(new long[]{0x0000000000000402L});
-	public static final BitSet FOLLOW_10_in_mult_arith_expr589 = new BitSet(new long[]{0x0000000000000030L});
-	public static final BitSet FOLLOW_base_arith_expr_in_mult_arith_expr593 = new BitSet(new long[]{0x0000000000000402L});
-	public static final BitSet FOLLOW_NUM_in_base_arith_expr619 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_base_arith_expr629 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_base_statement125 = new BitSet(new long[]{0x0000000000002000L});
+	public static final BitSet FOLLOW_13_in_base_statement127 = new BitSet(new long[]{0x0000000000000030L});
+	public static final BitSet FOLLOW_arith_expr_in_base_statement131 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_19_in_base_statement162 = new BitSet(new long[]{0x00000000002400B0L});
+	public static final BitSet FOLLOW_bool_expr_in_base_statement166 = new BitSet(new long[]{0x0000000000100000L});
+	public static final BitSet FOLLOW_20_in_base_statement168 = new BitSet(new long[]{0x0000000000C80010L});
+	public static final BitSet FOLLOW_base_statement_in_base_statement172 = new BitSet(new long[]{0x0000000000020000L});
+	public static final BitSet FOLLOW_17_in_base_statement180 = new BitSet(new long[]{0x0000000000C80010L});
+	public static final BitSet FOLLOW_base_statement_in_base_statement184 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_22_in_base_statement211 = new BitSet(new long[]{0x00000000002400B0L});
+	public static final BitSet FOLLOW_bool_expr_in_base_statement215 = new BitSet(new long[]{0x0000000000C80010L});
+	public static final BitSet FOLLOW_base_statement_in_base_statement228 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_23_in_base_statement263 = new BitSet(new long[]{0x0000000000C80010L});
+	public static final BitSet FOLLOW_statement_in_base_statement267 = new BitSet(new long[]{0x0000000001000000L});
+	public static final BitSet FOLLOW_24_in_base_statement269 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_literal_in_bool_expr316 = new BitSet(new long[]{0x0000000000000202L});
+	public static final BitSet FOLLOW_9_in_bool_expr334 = new BitSet(new long[]{0x00000000002400B0L});
+	public static final BitSet FOLLOW_literal_in_bool_expr338 = new BitSet(new long[]{0x0000000000000202L});
+	public static final BitSet FOLLOW_base_bool_expr_in_literal366 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_7_in_literal379 = new BitSet(new long[]{0x00000000002400B0L});
+	public static final BitSet FOLLOW_literal_in_literal383 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_21_in_base_bool_expr406 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_18_in_base_bool_expr444 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr483 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_16_in_base_bool_expr485 = new BitSet(new long[]{0x0000000000000030L});
+	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr489 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr504 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_15_in_base_bool_expr506 = new BitSet(new long[]{0x0000000000000030L});
+	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr510 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr524 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_8_in_base_bool_expr526 = new BitSet(new long[]{0x0000000000000030L});
+	public static final BitSet FOLLOW_arith_expr_in_base_bool_expr530 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_mult_arith_expr_in_arith_expr557 = new BitSet(new long[]{0x0000000000001802L});
+	public static final BitSet FOLLOW_11_in_arith_expr575 = new BitSet(new long[]{0x0000000000000030L});
+	public static final BitSet FOLLOW_mult_arith_expr_in_arith_expr579 = new BitSet(new long[]{0x0000000000001802L});
+	public static final BitSet FOLLOW_12_in_arith_expr592 = new BitSet(new long[]{0x0000000000000030L});
+	public static final BitSet FOLLOW_mult_arith_expr_in_arith_expr596 = new BitSet(new long[]{0x0000000000001802L});
+	public static final BitSet FOLLOW_base_arith_expr_in_mult_arith_expr624 = new BitSet(new long[]{0x0000000000000402L});
+	public static final BitSet FOLLOW_10_in_mult_arith_expr642 = new BitSet(new long[]{0x0000000000000030L});
+	public static final BitSet FOLLOW_base_arith_expr_in_mult_arith_expr646 = new BitSet(new long[]{0x0000000000000402L});
+	public static final BitSet FOLLOW_NUM_in_base_arith_expr672 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_base_arith_expr682 = new BitSet(new long[]{0x0000000000000002L});
 }
