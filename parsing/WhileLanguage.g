@@ -36,7 +36,8 @@ base_statement returns [Statement value]
 
 bool_expr returns [BoolExpr value]
     : e=literal       { $value = e; }
-      ( '&&' e=literal { $value = new AndExpr($value,e); } )*
+      ( '&&' e=literal { $value = new AndExpr($value,e); } 
+      | '||' e=literal { $value = new OrExpr($value,e); } )*
     ;
 
 literal returns [BoolExpr value]
